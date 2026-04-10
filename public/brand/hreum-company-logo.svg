@@ -1,0 +1,12 @@
+<svg width="830" height="200" viewBox="0 0 830 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hreumGradient" x1="25" y1="30" x2="240" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1EEFF0" />
+      <stop offset="1" stop-color="#19C6C7" />
+    </linearGradient>
+  </defs>
+  <path d="M22 27C22 12.6 33.6 1 48 1H223C232.4 1 240 8.6 240 18C240 37.7 224.1 53.6 204.4 53.6H17.7C15.4 53.6 13.5 51.7 13.5 49.4C13.5 47.6 14.7 46 16.4 45.4C20 44 22 40.9 22 37.2V27Z" fill="url(#hreumGradient)"/>
+  <path d="M0.7 79.7C0.7 72.8 6.3 67.2 13.2 67.2H162.8C169.4 67.2 174.8 72.6 174.8 79.2C174.8 92.6 164 103.4 150.7 103.4H76.8C57.3 103.4 39.6 115 32.3 133.1L26 148.5C21.8 158.8 22.4 170.4 27.8 180.2L30.8 185.8C31.9 187.9 30.4 190.4 28 190.4C23.4 190.4 18.8 189.7 14.3 188.2C2 184 -5.5 171.8 -4.5 159L0.7 79.7Z" fill="url(#hreumGradient)"/>
+  <text x="287" y="95" fill="#111111" font-family="'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="84" font-weight="800" letter-spacing="-2">흐름컴퍼니</text>
+  <text x="410" y="157" fill="#111111" font-family="'Montserrat', 'Arial', sans-serif" font-size="34" font-weight="700">FLOW COMPANY</text>
+</svg>

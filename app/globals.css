@@ -1,3 +1,5 @@
+@import "./heruem.css";
+
 :root {
   --bg: #08111f;
   --bg-soft: #0f1d33;
@@ -25,13 +27,19 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(122, 168, 255, 0.22), transparent 28%),
-    radial-gradient(circle at top right, rgba(124, 240, 201, 0.14), transparent 24%),
+  background: radial-gradient(
+      circle at top left,
+      rgba(122, 168, 255, 0.22),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(124, 240, 201, 0.14),
+      transparent 24%
+    ),
     linear-gradient(180deg, #07101d 0%, #0d1730 42%, #08111f 100%);
-  font-family:
-    "Pretendard", "SUIT", "Noto Sans KR", -apple-system, BlinkMacSystemFont,
-    sans-serif;
+  font-family: "Pretendard", "SUIT", "Noto Sans KR", -apple-system,
+    BlinkMacSystemFont, sans-serif;
 }
 
 a {
@@ -77,13 +85,18 @@ textarea {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .header-cta,
 .button-primary {
   padding: 13px 22px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-deep) 100%
+  );
   color: #062619;
   font-weight: 800;
 }
@@ -108,10 +121,21 @@ textarea {
 .hero-backdrop {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 20% 25%, rgba(122, 168, 255, 0.32), transparent 0 30%),
-    radial-gradient(circle at 80% 20%, rgba(124, 240, 201, 0.2), transparent 0 26%),
-    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.08), transparent 0 30%);
+  background: radial-gradient(
+      circle at 20% 25%,
+      rgba(122, 168, 255, 0.32),
+      transparent 0 30%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(124, 240, 201, 0.2),
+      transparent 0 26%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 255, 255, 0.08),
+      transparent 0 30%
+    );
   pointer-events: none;
 }
 
@@ -187,7 +211,11 @@ textarea {
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.03)
+  );
   box-shadow: var(--shadow);
 }
 
@@ -269,7 +297,11 @@ textarea {
   width: 56px;
   height: 56px;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(122, 168, 255, 0.6), rgba(124, 240, 201, 0.45));
+  background: linear-gradient(
+    135deg,
+    rgba(122, 168, 255, 0.6),
+    rgba(124, 240, 201, 0.45)
+  );
 }
 
 .feature-card h3,
@@ -307,8 +339,11 @@ textarea {
   min-height: 420px;
   padding: 18px;
   border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    ),
     #0b1424;
 }
 
@@ -328,8 +363,11 @@ textarea {
   display: block;
   height: 72px;
   border-radius: 20px;
-  background:
-    linear-gradient(90deg, rgba(122, 168, 255, 0.24), rgba(124, 240, 201, 0.15)),
+  background: linear-gradient(
+      90deg,
+      rgba(122, 168, 255, 0.24),
+      rgba(124, 240, 201, 0.15)
+    ),
     rgba(255, 255, 255, 0.05);
 }
 
@@ -389,7 +427,11 @@ textarea {
 }
 
 .comparison-col.strong {
-  background: linear-gradient(180deg, rgba(124, 240, 201, 0.08), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(
+    180deg,
+    rgba(124, 240, 201, 0.08),
+    rgba(255, 255, 255, 0.04)
+  );
 }
 
 .comparison-divider {

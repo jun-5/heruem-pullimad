@@ -1,0 +1,11 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hreumMarkGradient" x1="35" y1="26" x2="210" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1EEFF0" />
+      <stop offset="1" stop-color="#19C6C7" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="48" fill="#071B1C"/>
+  <path d="M45 48C45 32 58 19 74 19H211C222 19 231 28 231 39C231 60 214 77 193 77H40C35.6 77 32 73.4 32 69C32 66.2 33.8 63.6 36.4 62.6C41.7 60.5 45 55.4 45 49.8V48Z" fill="url(#hreumMarkGradient)"/>
+  <path d="M24 110C24 99.5 32.5 91 43 91H155C165 91 173 99 173 109C173 128.3 157.3 144 138 144H102.9C77.6 144 54.7 159.1 45 181.9L35.9 203.1C34.5 206.3 30.9 207.8 27.7 206.4C20 203.1 14.6 195.4 13.8 186.9L24 110Z" fill="url(#hreumMarkGradient)"/>
+</svg>
