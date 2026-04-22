@@ -383,7 +383,7 @@
     .sec06 h2 {
       font-size: clamp(32px, 5vw, 56px);
       font-weight: 800;
-      margin-bottom: 40px;
+      margin-bottom: 0px !important;
       line-height: 1.2;
       letter-spacing: -0.02em;
     }
@@ -392,6 +392,7 @@
       font-size: clamp(16px, 2vw, 20px);
       color: rgba(255, 255, 255, 0.7);
       line-height: 1.7;
+      margin-top: 24px !important;
       margin-bottom: 60px;
     }
 
@@ -442,7 +443,7 @@
     }
 
     .sec-logic {
-      padding: 150px 0 170px;
+      padding: 100px 0;
       background: #000;
       color: #fff;
     }
@@ -523,6 +524,125 @@
       .sec-logic .card {
         min-height: auto;
         padding: 30px 24px;
+      }
+    }
+
+    /* Auto-scrolling Reviews Styles */
+    .sec-reviews-scroll {
+      padding: 120px 0;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .sec-reviews-scroll .title-wrap {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .sec-reviews-scroll .title-wrap h2 {
+      font-size: clamp(26px, 4.5vw, 44px);
+      font-weight: 800;
+      color: #fff;
+      word-break: keep-all;
+      letter-spacing: -0.02em;
+    }
+
+    .sec-reviews-scroll .title-wrap p {
+      font-size: clamp(16px, 2.5vw, 18px);
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 20px;
+      word-break: keep-all;
+      font-weight: 400;
+    }
+
+    .reviews-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .scroll-track-wrapper {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .scroll-track {
+      display: flex;
+      gap: 25px;
+      padding-right: 25px;
+    }
+
+    .scroll-track-1 {
+      animation: scroll-infinite-left 40s linear infinite;
+    }
+
+    .scroll-track-2 {
+      animation: scroll-infinite-right 55s linear infinite;
+    }
+
+    .review-card {
+      flex: 0 0 460px;
+      height: 220px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-card:hover {
+      transform: scale(1.02);
+    }
+
+    .review-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    @keyframes scroll-infinite-left {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes scroll-infinite-right {
+      0% {
+        transform: translateX(-50%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .sec-reviews-scroll {
+        padding: 80px 0;
+      }
+
+      .review-card {
+        flex: 0 0 300px;
+        height: 140px;
+      }
+
+      .scroll-track-1 {
+        animation-duration: 25s;
+      }
+
+      .scroll-track-2 {
+        animation-duration: 35s;
       }
     }
   </style>
@@ -610,9 +730,9 @@
     <div class="sec02">
       <h2 class="cover-text" data-animation="fadeInUp"
         style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background: none !important;">
-        흐름컴퍼니가 <br class="pc-none" /><strong class="cover"
-          style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background: none !important;">결과로
-          증명</strong>합니다
+        원청사 흐름컴퍼니에서는 <br class="pc-none" /><strong class="cover"
+          style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background: none !important;">이렇게
+          일</strong>합니다
       </h2>
       <ul class="list-box">
         <li data-animation="fadeInUp" class="">
@@ -736,8 +856,8 @@
     <div class="sec-logic">
       <div class="section">
         <div class="title-wrap" data-animation="fadeInUp">
-          <h2>네이버와 쿠팡 로직은 생각보다 훨씬 영리합니다</h2>
-          <p>플랫폼은 인위적인 트래픽을 걸러내고 인기도 점수 반영을 차단하기 위해 실시간으로 대응합니다</p>
+          <h2>통합적인 마케팅 솔루션을 제공하는 흐름컴퍼니에서</h2>
+          <p>중간 마진 없는 검증된 실행사에서 합리적인 가격으로 경험해보세요.</p>
         </div>
         <div class="card-list">
           <div class="card" data-animation="fadeInUp,100">
@@ -748,7 +868,8 @@
               </svg>
             </div>
             <h3>압도적인 규모</h3>
-            <p>국내 최대 자체 폐쇄형 리뷰어몰 운영<br />실제 통신사 인증 6,000명 이상</p>
+            <p>국내 최대 자체 폐쇄형 리뷰어몰 운영<br />실제 통신사 인증 6,000명 이상
+            <p>
           </div>
           <div class="card" data-animation="fadeInUp,200">
             <div class="icon">
@@ -782,6 +903,55 @@
       </div>
     </div>
 
+    <!-- 실제 후기가 증명하는 섹션 -->
+    <section class="sec-reviews-scroll">
+      <div class="section">
+        <div class="title-wrap" data-animation="fadeInUp">
+          <h2>실제 후기가 증명하는 흐름컴퍼니의 진짜 실력!</h2>
+          <p>소상공인부터 코스닥 상장사까지, 신뢰할 수 밖에 없는 압도적인 실적</p>
+        </div>
+      </div>
+      <div class="reviews-container">
+        <!-- 첫 번째 라인: 왼쪽으로 이동 (빠름) -->
+        <div class="scroll-track-wrapper">
+          <div class="scroll-track scroll-track-1">
+            <div class="review-card"><img src="./images/reviews/후기1.png" alt="후기 1"></div>
+            <div class="review-card"><img src="./images/reviews/후기2.png" alt="후기 2"></div>
+            <div class="review-card"><img src="./images/reviews/후기3.png" alt="후기 3"></div>
+            <div class="review-card"><img src="./images/reviews/후기4.png" alt="후기 5"></div>
+            <div class="review-card"><img src="./images/reviews/후기5.png" alt="후기 5"></div>
+            <div class="review-card"><img src="./images/reviews/후기6.png" alt="후기 6"></div>
+            <!-- Seamless loop를 위해 반복 -->
+            <div class="review-card"><img src="./images/reviews/후기1.png" alt="후기 1"></div>
+            <div class="review-card"><img src="./images/reviews/후기2.png" alt="후기 2"></div>
+            <div class="review-card"><img src="./images/reviews/후기3.png" alt="후기 3"></div>
+            <div class="review-card"><img src="./images/reviews/후기4.png" alt="후기 4"></div>
+            <div class="review-card"><img src="./images/reviews/후기5.png" alt="후기 5"></div>
+            <div class="review-card"><img src="./images/reviews/후기6.png" alt="후기 6"></div>
+          </div>
+        </div>
+
+        <!-- 두 번째 라인: 오른쪽으로 이동 (느림) -->
+        <div class="scroll-track-wrapper">
+          <div class="scroll-track scroll-track-2">
+            <div class="review-card"><img src="./images/reviews/후기6.png" alt="후기 6"></div>
+            <div class="review-card"><img src="./images/reviews/후기5.png" alt="후기 5"></div>
+            <div class="review-card"><img src="./images/reviews/후기4.png" alt="후기 4"></div>
+            <div class="review-card"><img src="./images/reviews/후기3.png" alt="후기 3"></div>
+            <div class="review-card"><img src="./images/reviews/후기2.png" alt="후기 2"></div>
+            <div class="review-card"><img src="./images/reviews/후기1.png" alt="후기 1"></div>
+            <!-- Seamless loop를 위해 반복 -->
+            <div class="review-card"><img src="./images/reviews/후기6.png" alt="후기 6"></div>
+            <div class="review-card"><img src="./images/reviews/후기5.png" alt="후기 5"></div>
+            <div class="review-card"><img src="./images/reviews/후기4.png" alt="후기 4"></div>
+            <div class="review-card"><img src="./images/reviews/후기3.png" alt="후기 3"></div>
+            <div class="review-card"><img src="./images/reviews/후기2.png" alt="후기 2"></div>
+            <div class="review-card"><img src="./images/reviews/후기1.png" alt="후기 1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="sec05">
       <div class="section">
         <div class="title-wrap">
@@ -792,7 +962,7 @@
               플랫폼</strong> 서비스
           </h2>
           <p class="sub-tit" data-animation="fadeInUp,200"
-            style="color: rgba(255, 255, 255, 0.7) !important; -webkit-text-fill-color: rgba(255, 255, 255, 0.7) !important; background: none !important;">
+            style="color: #ffffff ; -webkit-text-fill-color: #ffffff !important; background: none !important;">
             순위 최적화부터 사후 유지까지, 전 과정을 책임집니다.
           </p>
         </div>
