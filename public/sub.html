@@ -651,6 +651,37 @@
         animation-duration: 35s;
       }
     }
+
+    .sub-page #container.sub-layout {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sub-page .sec01 {
+      order: 1;
+    }
+
+    .sub-page .sec05 {
+      order: 2;
+    }
+
+    .sub-page .sec-reviews-scroll {
+      order: 3;
+    }
+
+    .sub-page .sec06 {
+      order: 4;
+    }
+
+    .sub-page .sec02,
+    .sub-page .sec03,
+    .sub-page .sec04,
+    .sub-page .sec-logic {
+      display: none !important;
+    }
+
+    @media (max-width: 767px) {
+    }
   </style>
   <script type="text/javascript" src="https://the.pullimad.com/static/js/common.js"></script>
   <script type="text/javascript" src="https://the.pullimad.com/static/js/ui.js"></script>
@@ -662,14 +693,14 @@
     src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/17545735112/?random=1775803605981&amp;cv=11&amp;fst=1775803605981&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45je6481h1v9245813974z89235939656za20gzb9235939656zd9235939656xec&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=0~115938466~115938468~117512542~118128922~118442252&amp;u_w=1512&amp;u_h=982&amp;url=https%3A%2F%2Fthe.pullimad.com%2F&amp;rcb=3&amp;frm=0&amp;tiba=%ED%92%80%EB%A6%BC%EF%BD%9C%EC%BF%A0%ED%8C%A1%C2%B7%EB%84%A4%EC%9D%B4%EB%B2%84%EC%87%BC%ED%95%91%20%EC%88%9C%EC%9C%84%EC%B5%9C%EC%A0%81%ED%99%94&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=1507390191.1774436315&amp;uaa=arm&amp;uab=64&amp;uafvl=Chromium%3B146.0.7680.178%7CNot-A.Brand%3B24.0.0.0%7CGoogle%2520Chrome%3B146.0.7680.178&amp;uamb=0&amp;uam=&amp;uap=macOS&amp;uapv=14.5.0&amp;uaw=0&amp;data=event%3Dgtag.config&amp;rfmt=3&amp;fmt=4"></script>
 </head>
 
-<body>
+<body class="sub-page">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNHK3DBC" height="0" width="0"
       style="display: none; visibility: hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <header id="header" class="">
     <h1>
-      <a href="#" class="logo brand-logo" aria-label="흐름컴퍼니 홈">
+      <a href="/pullim.html" class="logo brand-logo" aria-label="흐름컴퍼니 홈">
         <img src="./logo.png" alt="흐름컴퍼니" />
       </a>
     </h1>
@@ -677,8 +708,8 @@
       <i></i></a>
   </header>
   <!-- 컨텐츠 영역 -->
-  <section id="container">
-    <div class="sec01">
+  <section id="container" class="sub-layout">
+    <div class="sec01" id="main-section">
       <canvas id="bg" width="1790" height="1714" style="display: none !important;"></canvas>
       <div class="text-box">
         <p
@@ -910,7 +941,7 @@
     </div>
 
     <!-- 실제 후기가 증명하는 섹션 -->
-    <section class="sec-reviews-scroll">
+    <section class="sec-reviews-scroll" id="reviews-section">
       <div class="section">
         <div class="title-wrap" data-animation="fadeInUp">
           <h2>실제 후기가 증명하는 흐름컴퍼니의 진짜 실력!</h2>
@@ -958,7 +989,7 @@
       </div>
     </section>
 
-    <div class="sec05">
+    <div class="sec05" id="platform-section">
       <div class="section">
         <div class="title-wrap">
           <h2 class="cover-text" data-animation="fadeInUp"
@@ -967,8 +998,8 @@
               style="color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background: none !important;">주력
               플랫폼</strong> 서비스
           </h2>
-          <p class="sub-tit" data-animation="fadeInUp,200"
-            style="color: #ffffff ; -webkit-text-fill-color: #ffffff !important; background: none !important;">
+          <p class="sub-tit animated fadeInUp" data-animation="fadeInUp,200"
+            style="color: #ffffff ; -webkit-text-fill-color: #ffffff !important; background: none !important; animation-delay: 200ms; --animation-delay: 200ms;">
             순위 최적화부터 사후 유지까지, 전 과정을 책임집니다.
           </p>
         </div>
@@ -1061,7 +1092,7 @@
       </div>
     </div>
 
-    <div class="sec06">
+    <div class="sec06" id="contact-section">
       <div class="bg-effect"></div>
       <div class="section">
         <div class="label-pill" data-animation="fadeInUp">Contact Us</div>
@@ -1088,8 +1119,8 @@
   <!-- 푸터 영역 -->
   <footer id="footer">
     <h1>
-      <a href="#" class="logo brand-logo" aria-label="흐름컴퍼니 홈">
-        <img src="./logo.png" alt="흐름컴퍼니" />
+      <a href="/pullim.html" class="logo brand-logo" aria-label="흐름컴퍼니 홈">
+        <img src="/brand/hreum-company-logo.svg" alt="흐름컴퍼니" />
       </a>
     </h1>
     <p class="text">
@@ -1405,27 +1436,39 @@
 
     /* lottie */
     const lottieAnimation = function () {
-      const scrollMotion = lottie.loadAnimation({
-        container: document.getElementById("scroll-motion"), // 애니메이션을 담을 요소
-        renderer: "svg", // 렌더링 방식 (svg, canvas, html 중 선택)
-        loop: true, // 반복 재생 여부
-        autoplay: true, // 자동 재생 여부
-        path: "https://the.pullimad.com/static/json/Scroll_down.json", // JSON 파일 경로 (또는 객체 형태의 animationData)
-      });
-      const shape01 = lottie.loadAnimation({
-        container: document.getElementById("shape01"), // 애니메이션을 담을 요소
-        renderer: "svg", // 렌더링 방식 (svg, canvas, html 중 선택)
-        loop: true, // 반복 재생 여부
-        autoplay: true, // 자동 재생 여부
-        path: "https://the.pullimad.com/static/json/Shape01.json", // JSON 파일 경로 (또는 객체 형태의 animationData)
-      });
-      const shape02 = lottie.loadAnimation({
-        container: document.getElementById("shape02"), // 애니메이션을 담을 요소
-        renderer: "svg", // 렌더링 방식 (svg, canvas, html 중 선택)
-        loop: true, // 반복 재생 여부
-        autoplay: true, // 자동 재생 여부
-        path: "https://the.pullimad.com/static/json/Shape02.json", // JSON 파일 경로 (또는 객체 형태의 animationData)
-      });
+      const scrollMotionTarget = document.getElementById("scroll-motion");
+      const shape01Target = document.getElementById("shape01");
+      const shape02Target = document.getElementById("shape02");
+
+      if (scrollMotionTarget) {
+        lottie.loadAnimation({
+          container: scrollMotionTarget,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://the.pullimad.com/static/json/Scroll_down.json",
+        });
+      }
+
+      if (shape01Target) {
+        lottie.loadAnimation({
+          container: shape01Target,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://the.pullimad.com/static/json/Shape01.json",
+        });
+      }
+
+      if (shape02Target) {
+        lottie.loadAnimation({
+          container: shape02Target,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "https://the.pullimad.com/static/json/Shape02.json",
+        });
+      }
     };
 
     lottieAnimation();
