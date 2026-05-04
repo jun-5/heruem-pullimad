@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  redirect("/pullim.html");
+  redirect("/index.html");
 }
