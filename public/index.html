@@ -86,39 +86,28 @@
       .sec01::after {
         content: "";
         position: absolute;
-        inset: -20%;
+        inset: -10%;
         z-index: 0;
         pointer-events: none;
-        background-repeat: repeat;
+        transform-origin: center;
         will-change: transform, opacity;
       }
 
       .sec01::before {
         opacity: 0.82;
-        background-image:
-          radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1px, transparent 1.4px),
-          radial-gradient(circle, rgba(25, 195, 181, 0.7) 0 1px, transparent 1.6px);
-        background-position:
-          0 0,
-          48px 72px;
-        background-size:
-          120px 120px,
-          180px 180px;
-        animation: sec01-star-drift 42s linear infinite;
+        background:
+          radial-gradient(circle at 22% 18%, rgba(25, 195, 181, 0.2), transparent 26%),
+          radial-gradient(circle at 78% 28%, rgba(255, 255, 255, 0.11), transparent 22%),
+          radial-gradient(circle at 50% 78%, rgba(25, 195, 181, 0.12), transparent 30%);
+        animation: sec01-nebula-drift 24s ease-in-out infinite alternate;
       }
 
       .sec01::after {
-        opacity: 0.55;
-        background-image:
-          radial-gradient(circle, rgba(255, 255, 255, 0.85) 0 1px, transparent 1.5px),
-          radial-gradient(circle, rgba(255, 255, 255, 0.45) 0 1.5px, transparent 2px);
-        background-position:
-          32px 24px,
-          96px 140px;
-        background-size:
-          220px 220px,
-          320px 320px;
-        animation: sec01-star-drift 68s linear infinite reverse;
+        inset: 0;
+        opacity: 0.68;
+        background:
+          radial-gradient(ellipse at center, transparent 34%, rgba(0, 0, 0, 0.32) 100%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%, rgba(0, 0, 0, 0.18));
       }
 
       .sec01 > * {
@@ -126,19 +115,115 @@
         z-index: 1;
       }
 
-      @keyframes sec01-star-drift {
+      .sec01-starfield {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .sec01-star {
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.94);
+        opacity: 0;
+        box-shadow:
+          0 0 calc(var(--size) * 3) rgba(255, 255, 255, 0.62),
+          0 0 calc(var(--size) * 7) rgba(25, 195, 181, 0.2);
+        animation:
+          sec01-star-twinkle var(--twinkle) ease-in-out var(--delay) infinite,
+          sec01-star-wander var(--wander) ease-in-out var(--delay) infinite alternate;
+      }
+
+      .sec01-star.is-teal {
+        background: rgba(25, 195, 181, 0.92);
+        box-shadow:
+          0 0 calc(var(--size) * 4) rgba(25, 195, 181, 0.8),
+          0 0 calc(var(--size) * 10) rgba(25, 195, 181, 0.22);
+      }
+
+      .sec01-shooting-star {
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        width: clamp(70px, 9vw, 150px);
+        height: 1px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95), rgba(25, 195, 181, 0.2));
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.48));
+        opacity: 0;
+        transform: rotate(-28deg) translate3d(0, 0, 0);
+        animation: sec01-shooting-star var(--duration) ease-out var(--delay) infinite;
+      }
+
+      @keyframes sec01-nebula-drift {
         0% {
-          transform: translate3d(0, 0, 0);
+          transform: translate3d(-1.5%, -1%, 0) scale(1);
+          opacity: 0.62;
         }
 
         100% {
-          transform: translate3d(-160px, 140px, 0);
+          transform: translate3d(1.5%, 1%, 0) scale(1.04);
+          opacity: 0.88;
+        }
+      }
+
+      @keyframes sec01-star-twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: scale(0.74);
+        }
+
+        42% {
+          opacity: var(--opacity);
+          transform: scale(1.18);
+        }
+
+        64% {
+          opacity: calc(var(--opacity) * 0.45);
+          transform: scale(0.92);
+        }
+      }
+
+      @keyframes sec01-star-wander {
+        0% {
+          translate: 0 0;
+        }
+
+        100% {
+          translate: var(--dx) var(--dy);
+        }
+      }
+
+      @keyframes sec01-shooting-star {
+        0%,
+        72% {
+          opacity: 0;
+          transform: rotate(-28deg) translate3d(0, 0, 0);
+        }
+
+        78% {
+          opacity: 0.95;
+        }
+
+        86%,
+        100% {
+          opacity: 0;
+          transform: rotate(-28deg) translate3d(-34vw, 22vw, 0);
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
         .sec01::before,
-        .sec01::after {
+        .sec01::after,
+        .sec01-star,
+        .sec01-shooting-star {
           animation: none;
         }
       }
@@ -372,102 +457,6 @@
           font-weight: 700;
           background: #19c3b5;
           box-shadow: none;
-        }
-      }
-
-      /* Services section fallback styles (for static HTML without Tailwind build) */
-      .sec05 {
-        padding: 80px 0;
-        margin-bottom: 80px !important;
-        background: #000;
-      }
-
-      .sec05 .section {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .sec05 .title-wrap {
-        margin-bottom: 60px;
-        text-align: center;
-      }
-
-      .sec05 .sub-tit {
-        color: rgba(255, 255, 255, 0.82) !important;
-        opacity: 1 !important;
-      }
-
-      .grid-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        padding: 20px 0;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .grid-container > div {
-        display: flex;
-        min-width: 0;
-        align-items: center;
-        justify-content: center;
-        aspect-ratio: 1 / 1;
-        padding: 20px;
-        border: 1px solid #eee;
-        border-radius: 20px;
-        background: #fff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-        transition: all 0.3s ease;
-      }
-
-      .grid-container > div:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-        border-color: #ddd;
-      }
-
-      .sec05 .img_wrap {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        min-width: 0;
-        padding: 10px;
-      }
-
-      .sec05 .img_wrap img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        /* mix-blend-mode was used in the original for some logos */
-        mix-blend-mode: multiply;
-      }
-
-      @media (max-width: 1024px) {
-        .grid-container {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      @media (max-width: 767px) {
-        .sec05 {
-          padding: 60px 0;
-        }
-
-        .sec05 .section {
-          padding: 0 16px;
-        }
-
-        .grid-container {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 12px;
-        }
-
-        .grid-container > div {
-          border-radius: 12px;
-          padding: 10px;
         }
       }
 
@@ -936,75 +925,7 @@
           </h2>
         </div>
 
-        <div id="scroll-motion">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 1080 1080"
-            width="1080"
-            height="1080"
-            preserveAspectRatio="xMidYMid meet"
-            style="
-              width: 100%;
-              height: 100%;
-              transform: translate3d(0px, 0px, 0px);
-              content-visibility: visible;
-            "
-          >
-            <defs>
-              <clipPath id="__lottie_element_4">
-                <rect width="1080" height="1080" x="0" y="0"></rect>
-              </clipPath>
-              <clipPath id="__lottie_element_6">
-                <path d="M0,0 L1080,0 L1080,1080 L0,1080z"></path>
-              </clipPath>
-            </defs>
-            <g clip-path="url(#__lottie_element_4)">
-              <g
-                clip-path="url(#__lottie_element_6)"
-                transform="matrix(1,0,0,1,0,0)"
-                opacity="1"
-                style="display: block"
-              >
-                <g
-                  transform="matrix(1,0,0,1,537,502.5)"
-                  opacity="1"
-                  style="display: block"
-                >
-                  <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      fill-opacity="0"
-                      stroke="rgb(255,255,255)"
-                      stroke-opacity="1"
-                      stroke-width="60"
-                      d=" M3,-180 C3,-180 3,-150.2969970703125 3,-118.15799713134766"
-                    ></path>
-                  </g>
-                </g>
-                <g
-                  transform="matrix(1,0,0,1,535.5,553.5)"
-                  opacity="1"
-                  style="display: block"
-                >
-                  <g opacity="1" transform="matrix(1,0,0,1,4.5,-13.5)">
-                    <path
-                      stroke-linecap="butt"
-                      stroke-linejoin="miter"
-                      fill-opacity="0"
-                      stroke-miterlimit="4"
-                      stroke="rgb(255,255,255)"
-                      stroke-opacity="1"
-                      stroke-width="20"
-                      d=" M130.5,-168 C130.5,-168 130.5,168 130.5,168 C130.5,240.02294921875 72.02294921875,298.5 0,298.5 C0,298.5 0,298.5 0,298.5 C-72.02294921875,298.5 -130.5,240.02294921875 -130.5,168 C-130.5,168 -130.5,-168 -130.5,-168 C-130.5,-240.02294921875 -72.02294921875,-298.5 0,-298.5 C0,-298.5 0,-298.5 0,-298.5 C72.02294921875,-298.5 130.5,-240.02294921875 130.5,-168z"
-                    ></path>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </div>
+        <div id="scroll-motion"></div>
       </div>
       <div class="sec02">
         <h2
@@ -1466,155 +1387,6 @@
         </div>
       </section>
 
-      <div class="sec05">
-        <div class="section">
-          <div class="title-wrap">
-            <h2
-              class="cover-text"
-              data-animation="fadeInUp"
-              style="
-                color: #ffffff !important;
-                -webkit-text-fill-color: #ffffff !important;
-                background: none !important;
-                margin-bottom: 30px !important;
-              "
-            >
-              <strong
-                class="cover"
-                style="
-                  color: #ffffff !important;
-                  -webkit-text-fill-color: #ffffff !important;
-                  background: none !important;
-                "
-                >주력 플랫폼</strong
-              >
-              서비스
-            </h2>
-            <p
-              class="sub-tit"
-              data-animation="fadeInUp,200"
-              style="
-                color: #ffffff;
-                -webkit-text-fill-color: #ffffff !important;
-                background: none !important;
-              "
-            >
-              순위 최적화부터 사후 유지까지, 전 과정을 책임집니다.
-            </p>
-          </div>
-          <div class="grid-container">
-            <!-- Item 1 -->
-            <div data-animation="fadeInUp,100">
-              <div class="img_wrap">
-                <img
-                  alt="쿠팡 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_coupang.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 2 -->
-            <div data-animation="fadeInUp,200">
-              <div class="img_wrap">
-                <img
-                  alt="네이버 쇼핑 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_n_shop.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 3 -->
-            <div data-animation="fadeInUp,300">
-              <div class="img_wrap">
-                <img
-                  alt="네이버 스토어 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_n_store.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 4 -->
-            <div data-animation="fadeInUp,400">
-              <div class="img_wrap">
-                <img
-                  alt="네이버 플레이스 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_n_place.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 5 -->
-            <div data-animation="fadeInUp,100">
-              <div class="img_wrap">
-                <img
-                  alt="올리브영 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_oliveyoung.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 6 -->
-            <div data-animation="fadeInUp,200">
-              <div class="img_wrap">
-                <img
-                  alt="11번가 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_11st.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 7 -->
-            <div data-animation="fadeInUp,300">
-              <div class="img_wrap">
-                <img
-                  alt="지마켓 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_gmarket.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 8 -->
-            <div data-animation="fadeInUp,400">
-              <div class="img_wrap">
-                <img
-                  alt="무신사 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_musinsa.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 9 -->
-            <div data-animation="fadeInUp,100">
-              <div class="img_wrap">
-                <img
-                  alt="29CM 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_29cm.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 10 -->
-            <div data-animation="fadeInUp,200">
-              <div class="img_wrap">
-                <img
-                  alt="지그재그 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_zigzag.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 11 -->
-            <div data-animation="fadeInUp,300">
-              <div class="img_wrap">
-                <img
-                  alt="에이블리 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_ably.png?v=20260312.02"
-                />
-              </div>
-            </div>
-            <!-- Item 12 -->
-            <div data-animation="fadeInUp,400">
-              <div class="img_wrap">
-                <img
-                  alt="선물하기 마케팅"
-                  src="https://www.heureum-company.com/static/app_www/base/img/img_k_gift.png?v=20260312.02"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="sec06">
         <div class="bg-effect"></div>
         <div class="section">
@@ -1968,6 +1740,58 @@
       sec07Motion();
       //sec08Motion();
 
+      const initSec01Stars = function () {
+        const sec01 = document.querySelector(".sec01");
+        if (!sec01 || sec01.querySelector(".sec01-starfield")) return;
+
+        const starfield = document.createElement("div");
+        starfield.className = "sec01-starfield";
+        starfield.setAttribute("aria-hidden", "true");
+        sec01.prepend(starfield);
+
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+        const starCount = isMobile ? 62 : 118;
+        const random = function (min, max) {
+          return Math.random() * (max - min) + min;
+        };
+
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement("i");
+          const isTeal = i % 13 === 0;
+          const size = random(1, isMobile ? 2.7 : 3.2);
+          const x = random(-4, 104);
+          const y = random(-2, 102);
+
+          star.className = "sec01-star" + (isTeal ? " is-teal" : "");
+          star.style.setProperty("--x", x.toFixed(2) + "%");
+          star.style.setProperty("--y", y.toFixed(2) + "%");
+          star.style.setProperty("--size", size.toFixed(2) + "px");
+          star.style.setProperty("--opacity", random(0.42, isTeal ? 0.88 : 0.96).toFixed(2));
+          star.style.setProperty("--delay", random(-10, 2).toFixed(2) + "s");
+          star.style.setProperty("--twinkle", random(3.2, 8.8).toFixed(2) + "s");
+          star.style.setProperty("--wander", random(18, 38).toFixed(2) + "s");
+          star.style.setProperty("--dx", random(-18, 18).toFixed(2) + "px");
+          star.style.setProperty("--dy", random(-16, 20).toFixed(2) + "px");
+          starfield.appendChild(star);
+        }
+
+        [
+          ["91%", "18%", "1s", "18s"],
+          ["72%", "42%", "7s", "24s"],
+          ["84%", "66%", "14s", "28s"],
+        ].forEach(function (item) {
+          const shootingStar = document.createElement("i");
+          shootingStar.className = "sec01-shooting-star";
+          shootingStar.style.setProperty("--x", item[0]);
+          shootingStar.style.setProperty("--y", item[1]);
+          shootingStar.style.setProperty("--delay", item[2]);
+          shootingStar.style.setProperty("--duration", item[3]);
+          starfield.appendChild(shootingStar);
+        });
+      };
+
+      initSec01Stars();
+
       /* lottie */
       const lottieAnimation = function () {
         const scrollMotion = lottie.loadAnimation({
@@ -1975,7 +1799,7 @@
           renderer: "svg", // 렌더링 방식 (svg, canvas, html 중 선택)
           loop: true, // 반복 재생 여부
           autoplay: true, // 자동 재생 여부
-          path: "https://the.pullimad.com/static/json/Scroll_down.json", // JSON 파일 경로 (또는 객체 형태의 animationData)
+          path: "./static/json/Scroll_down.json", // JSON 파일 경로 (또는 객체 형태의 animationData)
         });
         const shape01 = lottie.loadAnimation({
           container: document.getElementById("shape01"), // 애니메이션을 담을 요소
