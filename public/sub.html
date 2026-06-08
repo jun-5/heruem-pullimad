@@ -445,14 +445,6 @@
           backdrop-filter: blur(18px);
         }
 
-        body.contact-form-section-visible .fixed-box {
-          display: none;
-        }
-
-        #container:has(#contact-form-section:target) + .fixed-box {
-          display: none;
-        }
-
         .fixed-box p {
           flex: 1 1 auto;
           min-width: 0;
@@ -1815,27 +1807,7 @@
         });
       }
 
-      function initContactFormSectionVisibility() {
-        const section = document.getElementById("contact-form-section");
-        if (!section || !("IntersectionObserver" in window)) return;
-
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            document.body.classList.toggle(
-              "contact-form-section-visible",
-              entry.isIntersecting
-            );
-          },
-          {
-            threshold: 0.08,
-          }
-        );
-
-        observer.observe(section);
-      }
-
       initContactForms();
-      initContactFormSectionVisibility();
 	      // Lenis 초기화
 	      const lenis = new Lenis();
       lenis.start();
