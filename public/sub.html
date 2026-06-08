@@ -573,6 +573,128 @@
         margin-bottom: 60px;
       }
 
+      .sec06 .contact-form-card {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 32px;
+        background: rgba(24, 24, 27, 0.55);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(14px);
+        text-align: left;
+      }
+
+      .sec06 .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 28px;
+      }
+
+      .sec06 .contact-field,
+      .sec06 .contact-choice-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .sec06 .contact-field label,
+      .sec06 .contact-choice-title {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .sec06 .required {
+        color: #19c3b5;
+      }
+
+      .sec06 .contact-field input,
+      .sec06 .contact-field textarea {
+        width: 100%;
+        padding: 16px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        background: rgba(39, 39, 42, 0.65);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .sec06 .contact-field input::placeholder,
+      .sec06 .contact-field textarea::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .sec06 .contact-field input:focus,
+      .sec06 .contact-field textarea:focus {
+        border-color: rgba(25, 195, 181, 0.85);
+        box-shadow: 0 0 0 4px rgba(25, 195, 181, 0.15);
+      }
+
+      .sec06 .contact-options {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .sec06 .contact-option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .sec06 .contact-option input {
+        width: 24px;
+        height: 24px;
+        accent-color: #19c3b5;
+        cursor: pointer;
+      }
+
+      .sec06 .contact-form-block {
+        margin-top: 32px;
+      }
+
+      .sec06 .contact-submit {
+        width: 100%;
+        margin-top: 40px;
+        padding: 20px 24px;
+        border: 0;
+        border-radius: 18px;
+        background: #19c3b5;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: 0 20px 50px rgba(25, 195, 181, 0.18);
+        transition: filter 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .sec06 .contact-submit:hover {
+        filter: brightness(1.08);
+      }
+
+      .sec06 .contact-submit:active {
+        transform: scale(0.99);
+      }
+
+      .sec06 .contact-submit:disabled {
+        cursor: not-allowed;
+        opacity: 0.68;
+      }
+
+      .sec06 .contact-privacy {
+        margin-top: 20px;
+        color: rgba(255, 255, 255, 0.38);
+        font-size: 13px;
+        text-align: center;
+      }
+
       .sec06 .btn-cta-big {
         display: inline-block;
         padding: 22px 80px;
@@ -612,6 +734,15 @@
       @media (max-width: 767px) {
         .sec06 {
           padding: 60px 0;
+        }
+
+        .sec06 .contact-form-card {
+          padding: 26px 18px;
+          border-radius: 24px;
+        }
+
+        .sec06 .contact-grid {
+          grid-template-columns: 1fr;
         }
 
         .sec06 .btn-cta-big {
@@ -916,8 +1047,7 @@
         </a>
       </h1>
       <a
-        href="https://open.kakao.com/o/sgKdV6fi"
-        target="_blank"
+        href="#contact-section"
         id="btn-cta1"
         class="btn-link btn-tally"
         >무료 상담 신청 <i></i
@@ -1383,18 +1513,57 @@
             업종 불문, 결과로 증명하는 흐름컴퍼니 <br />
             단순한 광고를 넘어 매출의 흐름을 바꿉니다.
           </p>
-          <div
-            class="btn-group"
-            data-animation="fadeInUp,300"
-            style="margin-top: 50px"
-          >
-            <a
-              href="https://open.kakao.com/o/sgKdV6fi"
-              target="_blank"
-              class="btn-cta-big btn-tally"
-              >광고 문의하기</a
-            >
-          </div>
+          <form class="contact-form-card" data-contact-form data-animation="fadeInUp,300">
+            <div class="contact-grid">
+              <div class="contact-field">
+                <label for="contact-company-sub">회사명 <span class="required">*</span></label>
+                <input id="contact-company-sub" name="companyName" type="text" required placeholder="흐름컴퍼니" />
+              </div>
+              <div class="contact-field">
+                <label for="contact-phone-sub">연락처 <span class="required">*</span></label>
+                <input id="contact-phone-sub" name="contact" type="tel" required placeholder="010-0000-0000" />
+              </div>
+              <div class="contact-field">
+                <label for="contact-email-sub">이메일 <span class="required">*</span></label>
+                <input id="contact-email-sub" name="email" type="email" required placeholder="contact@hreum.co.kr" />
+              </div>
+              <div class="contact-field">
+                <label for="contact-url-sub">회사 or 상품 URL 주소 <span class="required">*</span></label>
+                <input id="contact-url-sub" name="url" type="text" required placeholder="www.hreum.co.kr" />
+              </div>
+            </div>
+
+            <div class="contact-grid contact-form-block">
+              <div class="contact-choice-group">
+                <div class="contact-choice-title">운영중인 플랫폼 <span class="required">*</span></div>
+                <div class="contact-options">
+                  <label class="contact-option"><input type="checkbox" name="selectedPlatforms" value="쿠팡" /> 쿠팡</label>
+                  <label class="contact-option"><input type="checkbox" name="selectedPlatforms" value="네이버" /> 네이버</label>
+                  <label class="contact-option"><input type="checkbox" name="selectedPlatforms" value="그 외 플랫폼" data-toggle-target="other-platform" /> 그 외 플랫폼</label>
+                </div>
+                <div class="contact-field" data-toggle-field="other-platform" hidden>
+                  <input name="otherPlatform" type="text" placeholder="운영중인 플랫폼을 직접 입력해 주세요" />
+                </div>
+              </div>
+
+              <div class="contact-choice-group">
+                <div class="contact-choice-title">필요한 서비스 <span class="required">*</span></div>
+                <div class="contact-options">
+                  <label class="contact-option"><input type="checkbox" name="selectedServices" value="실리뷰어 기반 리뷰 체험단" /> 실리뷰어 기반 리뷰 체험단</label>
+                  <label class="contact-option"><input type="checkbox" name="selectedServices" value="영수증 리뷰, 블로그 체험단" /> 영수증 리뷰, 블로그 체험단</label>
+                  <label class="contact-option"><input type="checkbox" name="selectedServices" value="트래픽 광고" /> 트래픽 광고</label>
+                  <label class="contact-option"><input type="checkbox" name="selectedServices" value="그 외 서비스" data-toggle-target="other-service" /> 그 외 서비스</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-field contact-form-block" data-toggle-field="other-service" hidden>
+              <textarea name="otherService" rows="4" placeholder="필요한 서비스를 직접 입력해 주세요"></textarea>
+            </div>
+
+            <button type="submit" class="contact-submit">무료 컨설팅 신청하기</button>
+            <p class="contact-privacy">* 개인정보는 상담 목적으로만 사용되며 안전하게 보호됩니다.</p>
+          </form>
         </div>
       </div>
     </section>
@@ -1403,7 +1572,7 @@
     <!-- 하단 고정영역 -->
     <div class="fixed-box">
       <p>지금 바로 상담 받아보세요!</p>
-      <a href="https://open.kakao.com/o/sgKdV6fi" target="_blank" id="btn-cta-floating" class="btn-tally">무료 상담 신청</a>
+      <a href="#contact-section" id="btn-cta-floating" class="btn-tally">무료 상담 신청</a>
     </div>
 
     <!-- 푸터 영역 -->
@@ -1452,8 +1621,8 @@
       })();
 
       // 기존 스크립트들 아래쪽에 추가해 주세요.
-      window.addEventListener("message", (e) => {
-        try {
+	      window.addEventListener("message", (e) => {
+	        try {
           // Tally에서 보내는 데이터를 파싱
           const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
 
@@ -1467,10 +1636,123 @@
           }
         } catch (err) {
           // JSON 파싱 에러 무시 (다른 종류의 메시지일 수 있으므로)
-        }
-      });
-      // Lenis 초기화
-      const lenis = new Lenis();
+	        }
+	      });
+
+      function getCheckedValues(form, name) {
+        return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(
+          (input) => input.value
+        );
+      }
+
+      function buildContactMessage(payload) {
+        return [
+          "[무료 컨설팅 신청]",
+          `회사명: ${payload.companyName || "-"}`,
+          `연락처: ${payload.contact || "-"}`,
+          `이메일: ${payload.email || "-"}`,
+          `URL: ${payload.url || "-"}`,
+          `플랫폼: ${
+            payload.selectedPlatforms.length > 0
+              ? payload.selectedPlatforms.join(", ")
+              : "-"
+          }`,
+          `서비스: ${
+            payload.selectedServices.length > 0
+              ? payload.selectedServices.join(", ")
+              : "-"
+          }`,
+          payload.otherPlatform ? `기타 플랫폼: ${payload.otherPlatform}` : null,
+          payload.otherService ? `기타 서비스: ${payload.otherService}` : null,
+        ]
+          .filter(Boolean)
+          .join("\n");
+      }
+
+      function initContactForms() {
+        document.querySelectorAll("[data-contact-form]").forEach((form) => {
+          form.querySelectorAll("[data-toggle-target]").forEach((checkbox) => {
+            const targetName = checkbox.dataset.toggleTarget;
+            const target = form.querySelector(`[data-toggle-field="${targetName}"]`);
+
+            checkbox.addEventListener("change", () => {
+              if (!target) return;
+              target.hidden = !checkbox.checked;
+              target.querySelectorAll("input, textarea").forEach((field) => {
+                if (!checkbox.checked) field.value = "";
+              });
+            });
+          });
+
+          form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const selectedPlatforms = getCheckedValues(form, "selectedPlatforms");
+            const selectedServices = getCheckedValues(form, "selectedServices");
+
+            if (selectedPlatforms.length === 0) {
+              alert("운영중인 플랫폼을 선택해 주세요.");
+              return;
+            }
+
+            if (selectedServices.length === 0) {
+              alert("필요한 서비스를 선택해 주세요.");
+              return;
+            }
+
+            const submitButton = form.querySelector(".contact-submit");
+            const originalText = submitButton.textContent;
+            const payload = {
+              companyName: form.companyName.value.trim(),
+              contact: form.contact.value.trim(),
+              email: form.email.value.trim(),
+              url: form.url.value.trim(),
+              selectedPlatforms,
+              selectedServices,
+              otherPlatform: form.otherPlatform?.value.trim() || "",
+              otherService: form.otherService?.value.trim() || "",
+            };
+
+            try {
+              submitButton.disabled = true;
+              submitButton.textContent = "전송 중...";
+
+              const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  ...payload,
+                  message: buildContactMessage(payload),
+                }),
+              });
+              const data = await response.json().catch(() => ({}));
+
+              if (!response.ok) {
+                throw new Error(data.message || "문의 전송에 실패했습니다.");
+              }
+
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({ event: "form-submitted" });
+              alert(data.message || "상담 신청이 접수되었습니다.");
+              form.reset();
+              form.querySelectorAll("[data-toggle-field]").forEach((field) => {
+                field.hidden = true;
+              });
+            } catch (error) {
+              alert(error.message || "문의 전송 중 문제가 발생했습니다.");
+            } finally {
+              submitButton.disabled = false;
+              submitButton.textContent = originalText;
+            }
+          });
+        });
+      }
+
+      initContactForms();
+	      // Lenis 초기화
+	      const lenis = new Lenis();
       lenis.start();
 
       lenis.on("scroll", ScrollTrigger.update);
