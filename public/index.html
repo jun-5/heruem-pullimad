@@ -450,11 +450,11 @@
           backdrop-filter: blur(18px);
         }
 
-        body.contact-section-visible .fixed-box {
+        body.contact-form-section-visible .fixed-box {
           display: none;
         }
 
-        #container:has(#contact-section:target) + .fixed-box {
+        #container:has(#contact-form-section:target) + .fixed-box {
           display: none;
         }
 
@@ -1062,7 +1062,8 @@
         </a>
       </h1>
       <a
-        href="#contact-section"
+        href="https://open.kakao.com/o/sgKdV6fi"
+        target="_blank"
         id="btn-cta1"
         class="btn-link btn-tally"
         >무료 상담 신청 <i></i
@@ -1583,6 +1584,29 @@
             업종 불문, 결과로 증명하는 흐름컴퍼니 <br />
             단순한 광고를 넘어 매출의 흐름을 바꿉니다.
           </p>
+          <div
+            class="btn-group"
+            data-animation="fadeInUp,300"
+            style="margin-top: 50px"
+          >
+            <a
+              href="https://open.kakao.com/o/sgKdV6fi"
+              target="_blank"
+              class="btn-cta-big btn-tally"
+              >광고 문의하기</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="sec06" id="contact-form-section">
+        <div class="bg-effect"></div>
+        <div class="section">
+          <div class="label-pill" data-animation="fadeInUp">Consulting Form</div>
+          <h2 data-animation="fadeInUp,100">무료 컨설팅 신청하기</h2>
+          <p class="sub-text" data-animation="fadeInUp,200">
+            문의 정보를 남겨주시면 담당자가 확인 후 카카오톡으로 안내드립니다.
+          </p>
           <form class="contact-form-card" data-contact-form data-animation="fadeInUp,300">
             <div class="contact-grid">
               <div class="contact-field">
@@ -1642,7 +1666,7 @@
     <!-- 하단 고정영역 -->
     <div class="fixed-box">
       <p>지금 바로 상담 받아보세요!</p>
-      <a href="#contact-section" id="btn-cta-floating" class="btn-tally">무료 상담 신청</a>
+      <a href="https://open.kakao.com/o/sgKdV6fi" target="_blank" id="btn-cta-floating" class="btn-tally">무료 상담 신청</a>
     </div>
 
     <!-- 푸터 영역 -->
@@ -1817,14 +1841,14 @@
         });
       }
 
-      function initContactSectionVisibility() {
-        const section = document.getElementById("contact-section");
+      function initContactFormSectionVisibility() {
+        const section = document.getElementById("contact-form-section");
         if (!section || !("IntersectionObserver" in window)) return;
 
         const observer = new IntersectionObserver(
           ([entry]) => {
             document.body.classList.toggle(
-              "contact-section-visible",
+              "contact-form-section-visible",
               entry.isIntersecting
             );
           },
@@ -1837,7 +1861,7 @@
       }
 
       initContactForms();
-      initContactSectionVisibility();
+      initContactFormSectionVisibility();
 	      // Lenis 초기화
 	      const lenis = new Lenis();
       lenis.start();
