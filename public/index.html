@@ -80,6 +80,10 @@
         overflow-x: hidden;
       }
 
+      body {
+        position: relative;
+      }
+
       .sec01 {
         position: relative;
         overflow: hidden;
@@ -446,6 +450,14 @@
           backdrop-filter: blur(18px);
         }
 
+        body.contact-section-visible .fixed-box {
+          display: none;
+        }
+
+        #container:has(#contact-section:target) + .fixed-box {
+          display: none;
+        }
+
         .fixed-box p {
           flex: 1 1 auto;
           min-width: 0;
@@ -548,6 +560,15 @@
       .sec06 .section {
         position: relative;
         z-index: 2;
+        left: auto !important;
+        right: auto !important;
+        box-sizing: border-box;
+        width: 100% !important;
+        max-width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 20px;
+        padding-right: 20px;
       }
 
       .sec06 .label-pill {
@@ -579,6 +600,8 @@
       }
 
       .sec06 .contact-form-card {
+        box-sizing: border-box !important;
+        width: 100% !important;
         max-width: 900px;
         margin: 0 auto;
         padding: 48px;
@@ -591,6 +614,7 @@
       }
 
       .sec06 .contact-grid {
+        box-sizing: border-box !important;
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 24px 28px;
@@ -598,6 +622,7 @@
 
       .sec06 .contact-field,
       .sec06 .contact-choice-group {
+        min-width: 0;
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -616,7 +641,9 @@
 
       .sec06 .contact-field input,
       .sec06 .contact-field textarea {
-        width: 100%;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        max-width: 100%;
         padding: 16px 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 14px;
@@ -645,6 +672,7 @@
       }
 
       .sec06 .contact-option {
+        min-width: 0;
         display: flex;
         align-items: center;
         gap: 12px;
@@ -655,6 +683,8 @@
       }
 
       .sec06 .contact-option input {
+        box-sizing: border-box !important;
+        flex: 0 0 24px;
         width: 24px;
         height: 24px;
         accent-color: #19c3b5;
@@ -666,7 +696,8 @@
       }
 
       .sec06 .contact-submit {
-        width: 100%;
+        box-sizing: border-box !important;
+        width: 100% !important;
         margin-top: 40px;
         padding: 20px 24px;
         border: 0;
@@ -742,8 +773,18 @@
         }
 
         .sec06 .contact-form-card {
+          width: 100% !important;
           padding: 26px 18px;
           border-radius: 24px;
+        }
+
+        .sec06 .section {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+
+        .sec06 .sub-text {
+          margin-bottom: 36px;
         }
 
         .sec06 .contact-grid {
@@ -1776,7 +1817,27 @@
         });
       }
 
+      function initContactSectionVisibility() {
+        const section = document.getElementById("contact-section");
+        if (!section || !("IntersectionObserver" in window)) return;
+
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            document.body.classList.toggle(
+              "contact-section-visible",
+              entry.isIntersecting
+            );
+          },
+          {
+            threshold: 0.08,
+          }
+        );
+
+        observer.observe(section);
+      }
+
       initContactForms();
+      initContactSectionVisibility();
 	      // Lenis 초기화
 	      const lenis = new Lenis();
       lenis.start();
