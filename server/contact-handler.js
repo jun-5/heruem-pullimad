@@ -179,9 +179,6 @@ function validateContactRequest(body) {
   if (!body.contact?.trim()) {
     throw new ContactRequestError("연락처를 입력해 주세요.");
   }
-  if (!body.email?.trim()) {
-    throw new ContactRequestError("이메일을 입력해 주세요.");
-  }
   if (!body.url?.trim()) {
     throw new ContactRequestError("URL을 입력해 주세요.");
   }
@@ -190,7 +187,7 @@ function validateContactRequest(body) {
     ...body,
     companyName: body.companyName.trim(),
     contact: body.contact.trim(),
-    email: body.email.trim(),
+    email: body.email?.trim() || "",
     url: body.url.trim(),
     otherPlatform: body.otherPlatform?.trim(),
     otherService: body.otherService?.trim(),
