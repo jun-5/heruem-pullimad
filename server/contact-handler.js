@@ -189,6 +189,7 @@ function validateContactRequest(body) {
     contact: body.contact.trim(),
     email: body.email?.trim() || "",
     url: body.url.trim(),
+    sourceDomain: body.sourceDomain?.trim(),
     otherPlatform: body.otherPlatform?.trim(),
     otherService: body.otherService?.trim(),
     selectedPlatforms: ensureArray(body.selectedPlatforms),
@@ -204,6 +205,7 @@ function buildFallbackMessage(payload) {
     `연락처: ${payload.contact || "-"}`,
     `이메일: ${payload.email || "-"}`,
     `URL: ${payload.url || "-"}`,
+    payload.sourceDomain ? `접수 도메인: ${payload.sourceDomain}` : null,
     payload.selectedPlatforms.length > 0
       ? `플랫폼: ${payload.selectedPlatforms.join(", ")}`
       : "플랫폼: -",
