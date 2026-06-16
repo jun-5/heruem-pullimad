@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import https from "node:https";
 
 const SOURCE_URL = "https://www.heureum-company.com/";
 
@@ -24,6 +25,10 @@ function absolutizeUrl(value = "") {
   return new URL(value, SOURCE_URL).toString();
 }
 
+function extractSlug(value = "") {
+  return value.match(/\/board\/([^/]+)\//)?.[1] || "";
+}
+
 function parseBoardItems(html) {
   const section = html.match(
     /<section[^>]+id=["']sect_05["'][\s\S]*?<\/section>/i
@@ -42,25 +47,64 @@ function parseBoardItems(html) {
     const publishedAt = body.match(/<p\s+class=["']dttm["'][^>]*>([\s\S]*?)<\/p>/i)?.[1] || "";
 
     return {
+      slug: extractSlug(href),
       title: stripTags(title),
       publishedAt: stripTags(publishedAt),
       url: absolutizeUrl(href),
+      localUrl: `/board/${extractSlug(href)}/`,
       thumbnail: absolutizeUrl(image),
       thumbnailAlt: stripTags(imageAlt),
     };
   });
 }
 
+function fetchSourceHtml(url) {
+  return new Promise((resolve, reject) => {
+    const request = https.request(
+      url,
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0 HreumCompanyBoardFetcher/1.0",
+        },
+        rejectUnauthorized: false,
+      },
+      (response) => {
+        if (
+          response.statusCode >= 300 &&
+          response.statusCode < 400 &&
+          response.headers.location
+        ) {
+          response.resume();
+          resolve(fetchSourceHtml(absolutizeUrl(response.headers.location)));
+          return;
+        }
+
+        let body = "";
+        response.setEncoding("utf8");
+        response.on("data", (chunk) => {
+          body += chunk;
+        });
+        response.on("end", () => {
+          resolve({
+            ok: response.statusCode >= 200 && response.statusCode < 300,
+            status: response.statusCode,
+            text: body,
+          });
+        });
+      }
+    );
+
+    request.on("error", reject);
+    request.end();
+  });
+}
+
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const response = await fetch(SOURCE_URL, {
-      cache: "no-store",
-      headers: {
-        "User-Agent": "Mozilla/5.0 HreumCompanyBoardFetcher/1.0",
-      },
-    });
+    const response = await fetchSourceHtml(SOURCE_URL);
 
     if (!response.ok) {
       return NextResponse.json(
@@ -69,7 +113,7 @@ export async function GET() {
       );
     }
 
-    const html = await response.text();
+    const html = response.text;
     const items = parseBoardItems(html);
 
     return NextResponse.json({

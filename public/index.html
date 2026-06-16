@@ -2228,9 +2228,7 @@
     function createBoardCard(item) {
       const card = document.createElement("a");
       card.className = "board-card";
-      card.href = item.url || "#";
-      card.target = "_blank";
-      card.rel = "noopener noreferrer";
+      card.href = item.localUrl || (item.slug ? `/board/${item.slug}/` : item.url || "#");
 
       const thumb = document.createElement("span");
       thumb.className = "board-thumb";
