@@ -1155,6 +1155,190 @@
         height: 28px;
       }
     }
+
+    .sec-board {
+      padding: 140px 0 130px;
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .sec-board .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .sec-board .board-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 44px;
+    }
+
+    .sec-board .label-pill {
+      display: inline-block;
+      padding: 6px 24px;
+      border: 1px solid rgba(25, 195, 181, 0.55);
+      border-radius: 100px;
+      color: #19c3b5;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: rgba(25, 195, 181, 0.08);
+    }
+
+    .sec-board h2 {
+      margin-top: 22px;
+      color: #fff;
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+    }
+
+    .sec-board .board-head p {
+      max-width: 410px;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 17px;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    .sec-board .board-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .sec-board .board-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      background: rgba(24, 24, 27, 0.78);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+      transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .sec-board .board-card:hover {
+      border-color: rgba(25, 195, 181, 0.58);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 72px rgba(25, 195, 181, 0.1);
+    }
+
+    .sec-board .board-thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #161616;
+    }
+
+    .sec-board .board-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.32s ease;
+    }
+
+    .sec-board .board-card:hover .board-thumb img {
+      transform: scale(1.04);
+    }
+
+    .sec-board .board-body {
+      padding: 22px;
+    }
+
+    .sec-board .board-date {
+      color: #19c3b5;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .sec-board .board-title {
+      display: -webkit-box;
+      min-height: 58px;
+      margin-top: 12px;
+      overflow: hidden;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.45;
+      word-break: keep-all;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .sec-board .board-link-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .sec-board .board-link-text::after {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-top: 2px solid currentColor;
+      border-right: 2px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .sec-board .board-state {
+      grid-column: 1 / -1;
+      padding: 46px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      background: rgba(24, 24, 27, 0.72);
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 17px;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .sec-board .board-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      .sec-board {
+        padding: 80px 0;
+      }
+
+      .sec-board .board-head {
+        display: block;
+        margin-bottom: 32px;
+      }
+
+      .sec-board .board-head p {
+        margin-top: 18px;
+        font-size: 15px;
+      }
+
+      .sec-board .board-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .sec-board .board-body {
+        padding: 18px;
+      }
+
+      .sec-board .board-title {
+        min-height: auto;
+        font-size: 18px;
+      }
+    }
   </style>
   <script type="text/javascript" src="https://the.pullimad.com/static/js/common.js"></script>
   <script type="text/javascript" src="https://the.pullimad.com/static/js/ui.js"></script>
@@ -1608,6 +1792,24 @@
       </div>
     </section>
 
+    <section class="sec-board" id="board-section">
+      <div class="section">
+        <div class="board-head" data-animation="fadeInUp">
+          <div>
+            <span class="label-pill">Hreum Board</span>
+            <h2>흐름컴퍼니의 최신 소식</h2>
+          </div>
+          <p>
+            공식 게시판의 새 글을 실시간으로 불러와, 흐름컴퍼니의 운영 소식과
+            안내 사항을 한눈에 확인할 수 있습니다.
+          </p>
+        </div>
+        <div class="board-grid" data-board-list aria-live="polite">
+          <div class="board-state">게시판 정보를 불러오는 중입니다.</div>
+        </div>
+      </div>
+    </section>
+
     <div class="sec06" id="contact-section">
       <div class="bg-effect"></div>
       <div class="section">
@@ -2023,6 +2225,85 @@
       });
     }
 
+    function createBoardCard(item) {
+      const card = document.createElement("a");
+      card.className = "board-card";
+      card.href = item.url || "#";
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+
+      const thumb = document.createElement("span");
+      thumb.className = "board-thumb";
+
+      if (item.thumbnail) {
+        const image = document.createElement("img");
+        image.src = item.thumbnail;
+        image.alt = item.thumbnailAlt || item.title || "흐름게시판 이미지";
+        image.loading = "lazy";
+        thumb.appendChild(image);
+      }
+
+      const body = document.createElement("span");
+      body.className = "board-body";
+
+      const date = document.createElement("span");
+      date.className = "board-date";
+      date.textContent = item.publishedAt || "흐름게시판";
+
+      const title = document.createElement("strong");
+      title.className = "board-title";
+      title.textContent = item.title || "게시글 제목";
+
+      const linkText = document.createElement("span");
+      linkText.className = "board-link-text";
+      linkText.textContent = "자세히 보기";
+
+      body.append(date, title, linkText);
+      card.append(thumb, body);
+
+      return card;
+    }
+
+    async function initBoardList() {
+      const boardList = document.querySelector("[data-board-list]");
+      if (!boardList) return;
+
+      try {
+        const response = await fetch("/api/heureum-board", {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(data.message || "게시판 정보를 불러오지 못했습니다.");
+        }
+
+        const items = Array.isArray(data.items) ? data.items : [];
+        boardList.replaceChildren();
+
+        if (items.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "board-state";
+          empty.textContent = "표시할 게시글이 없습니다.";
+          boardList.appendChild(empty);
+          return;
+        }
+
+        items.forEach((item) => {
+          boardList.appendChild(createBoardCard(item));
+        });
+      } catch (error) {
+        const errorState = document.createElement("div");
+        errorState.className = "board-state";
+        errorState.textContent =
+          error.message || "게시판 정보를 불러오는 중 문제가 발생했습니다.";
+        boardList.replaceChildren(errorState);
+      }
+    }
+
+    initBoardList();
     initContactForms();
     initFaqAccordion();
     // Lenis 초기화
