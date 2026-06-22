@@ -103,6 +103,15 @@
       pointer-events: none;
     }
 
+    .sec01-starfield::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent 65%, #000000 100%);
+      z-index: 2;
+    }
+
     .sec01-star {
       position: absolute;
       left: var(--x);
@@ -1214,6 +1223,9 @@
     }
 
     .sec-board .board-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
       min-width: 0;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1221,27 +1233,29 @@
       background: rgba(24, 24, 27, 0.78);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
       transition: border-color 0.24s ease, transform 0.24s ease, box-shadow 0.24s ease;
+      text-decoration: none;
     }
 
     .sec-board .board-card:hover {
       border-color: rgba(25, 195, 181, 0.58);
       transform: translateY(-6px);
       box-shadow: 0 24px 72px rgba(25, 195, 181, 0.1);
+      text-decoration: none;
     }
 
     .sec-board .board-thumb {
       display: block;
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
-      background: #161616;
+      background: #000;
     }
 
     .sec-board .board-thumb img {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform 0.32s ease;
     }
 
@@ -1250,6 +1264,9 @@
     }
 
     .sec-board .board-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
       padding: 22px;
     }
 
@@ -1262,7 +1279,6 @@
 
     .sec-board .board-title {
       display: -webkit-box;
-      min-height: 58px;
       margin-top: 12px;
       overflow: hidden;
       color: #fff;
@@ -1272,13 +1288,15 @@
       word-break: keep-all;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+      line-clamp: 2;
     }
 
     .sec-board .board-link-text {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 28px;
+      margin-top: auto;
+      padding-top: 24px;
       color: rgba(255, 255, 255, 0.72);
       font-size: 14px;
       font-weight: 800;
@@ -1792,24 +1810,6 @@
       </div>
     </section>
 
-    <section class="sec-board" id="board-section">
-      <div class="section">
-        <div class="board-head" data-animation="fadeInUp">
-          <div>
-            <span class="label-pill">Hreum Board</span>
-            <h2>흐름컴퍼니의 최신 소식</h2>
-          </div>
-          <p>
-            공식 게시판의 새 글을 실시간으로 불러와, 흐름컴퍼니의 운영 소식과
-            안내 사항을 한눈에 확인할 수 있습니다.
-          </p>
-        </div>
-        <div class="board-grid" data-board-list aria-live="polite">
-          <div class="board-state">게시판 정보를 불러오는 중입니다.</div>
-        </div>
-      </div>
-    </section>
-
     <div class="sec06" id="contact-section">
       <div class="bg-effect"></div>
       <div class="section">
@@ -1825,6 +1825,20 @@
         </div>
       </div>
     </div>
+
+    <section class="sec-board" id="board-section">
+      <div class="section">
+        <div class="board-head" data-animation="fadeInUp">
+          <div>
+            <span class="label-pill">Heureum Board</span>
+            <h2>흐름컴퍼니의 최신 소식</h2>
+          </div>
+        </div>
+        <div class="board-grid" data-board-list aria-live="polite">
+          <div class="board-state">게시판 정보를 불러오는 중입니다.</div>
+        </div>
+      </div>
+    </section>
 
     <!-- FAQ Section -->
     <section class="sec-faq" id="faq-section">

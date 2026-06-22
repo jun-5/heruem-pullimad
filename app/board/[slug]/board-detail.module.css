@@ -1,22 +1,33 @@
 .page {
   min-height: 100vh;
-  background: #000;
+  padding-top: 80px;
+  background: 
+    radial-gradient(circle at 15% 150px, rgba(25, 195, 181, 0.12), transparent 500px),
+    radial-gradient(circle at 85% 100px, rgba(122, 168, 255, 0.15), transparent 450px),
+    #000;
   color: #fff;
   font-family: "Inter", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
 }
 
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 20px clamp(20px, 4vw, 60px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(18px);
+  height: 80px;
+  padding: 25px 20px;
+  background: transparent;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.scrolled {
+  background: rgba(8, 9, 10, 0.2);
+  backdrop-filter: blur(4px);
 }
 
 .logo {
@@ -27,7 +38,7 @@
 .logo img {
   display: block;
   width: auto;
-  height: 52px;
+  height: 36px;
 }
 
 .headerButton,
@@ -62,15 +73,7 @@
   padding: clamp(64px, 9vw, 120px) clamp(20px, 4vw, 60px) 52px;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 18% 24%, rgba(25, 195, 181, 0.2), transparent 28%),
-    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.1), transparent 22%);
-}
+
 
 .hero > div,
 .contentWrap {
@@ -195,12 +198,21 @@
 }
 
 @media (max-width: 767px) {
+  .page {
+    padding-top: 49px;
+  }
+
   .header {
-    padding: 14px 18px;
+    height: auto;
+    padding: 10px 20px;
+  }
+
+  .scrolled {
+    background: rgba(8, 9, 10, 0.8);
   }
 
   .logo img {
-    height: 38px;
+    height: 29px;
   }
 
   .headerButton {

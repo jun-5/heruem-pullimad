@@ -7,6 +7,19 @@ export default function BoardDetailClient({ slug }) {
   const [detail, setDetail] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -50,7 +63,7 @@ export default function BoardDetailClient({ slug }) {
 
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
+      <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
         <a href="/index.html" className={styles.logo} aria-label="흐름컴퍼니 홈">
           <img src="/logo.png" alt="흐름컴퍼니" />
         </a>
@@ -61,12 +74,8 @@ export default function BoardDetailClient({ slug }) {
 
       <section className={styles.hero}>
         <div>
-          <span className={styles.label}>Hreum Board</span>
+          <span className={styles.label}>Heureum Board</span>
           <h1>{detail?.title || "흐름게시판"}</h1>
-          <p>
-            흐름컴퍼니 공식 게시판의 상세 내용을 우리 페이지 형식으로
-            불러왔습니다.
-          </p>
         </div>
       </section>
 
