@@ -2242,7 +2242,7 @@
     function createBoardCard(item) {
       const card = document.createElement("a");
       card.className = "board-card";
-      card.href = item.localUrl || (item.slug ? `/board/${item.slug}/` : item.url || "#");
+      card.href = item.localUrl || (item.slug ? `/board/${item.slug}` : item.url || "#");
 
       const thumb = document.createElement("span");
       thumb.className = "board-thumb";
@@ -2276,6 +2276,28 @@
       return card;
     }
 
+    function prefetchBoardDetails(items) {
+      const urls = items
+        .map((item) => item.localUrl || (item.slug ? `/board/${item.slug}` : ""))
+        .filter(Boolean);
+      const uniqueUrls = Array.from(new Set(urls));
+
+      const warmDetailCache = () => {
+        uniqueUrls.forEach((url) => {
+          fetch(url, {
+            credentials: "same-origin",
+            priority: "low",
+          }).catch(() => { });
+        });
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(warmDetailCache, { timeout: 1800 });
+      } else {
+        window.setTimeout(warmDetailCache, 800);
+      }
+    }
+
     async function initBoardList() {
       const boardList = document.querySelector("[data-board-list]");
       if (!boardList) return;
@@ -2306,6 +2328,7 @@
         items.forEach((item) => {
           boardList.appendChild(createBoardCard(item));
         });
+        prefetchBoardDetails(items);
       } catch (error) {
         const errorState = document.createElement("div");
         errorState.className = "board-state";

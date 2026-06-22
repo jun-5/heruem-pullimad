@@ -11,14 +11,15 @@ export default function BoardDetailClient({ slug }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -81,7 +82,7 @@ export default function BoardDetailClient({ slug }) {
 
       <section className={styles.contentWrap}>
         {isLoading ? (
-          <div className={styles.stateCard}>게시글 정보를 불러오는 중입니다.</div>
+          null
         ) : errorMessage ? (
           <div className={styles.stateCard}>{errorMessage}</div>
         ) : (

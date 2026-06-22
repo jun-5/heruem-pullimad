@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import https from "node:https";
 
 const SOURCE_URL = "https://www.heureum-company.com/";
+const BOARD_LIST_CACHE_CONTROL = "s-maxage=600, stale-while-revalidate=3600";
 
 function decodeHtml(value = "") {
   return value
@@ -51,7 +52,7 @@ function parseBoardItems(html) {
       title: stripTags(title),
       publishedAt: stripTags(publishedAt),
       url: absolutizeUrl(href),
-      localUrl: `/board/${extractSlug(href)}/`,
+      localUrl: `/board/${extractSlug(href)}`,
       thumbnail: absolutizeUrl(image),
       thumbnailAlt: stripTags(imageAlt),
     };
@@ -116,11 +117,18 @@ export async function GET() {
     const html = response.text;
     const items = parseBoardItems(html);
 
-    return NextResponse.json({
-      source: SOURCE_URL,
-      fetchedAt: new Date().toISOString(),
-      items,
-    });
+    return NextResponse.json(
+      {
+        source: SOURCE_URL,
+        fetchedAt: new Date().toISOString(),
+        items,
+      },
+      {
+        headers: {
+          "Cache-Control": BOARD_LIST_CACHE_CONTROL,
+        },
+      }
+    );
   } catch (error) {
     return NextResponse.json(
       {
